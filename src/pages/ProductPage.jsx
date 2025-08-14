@@ -9,10 +9,12 @@ const ProductPage = () => {
     const { products, setProducts, loading, error } = useFetchProducts();
     const [searchTerm, setSearchTerm] = useState('');
     
+    // Handler to update the search term state
     function handleSearchChange(value) {
         setSearchTerm(value);
     }
 
+    // Filters products based on the search term
     const filteredProducts = products.filter((wine) => {
     const term = searchTerm.toLowerCase();
 
@@ -24,12 +26,14 @@ const ProductPage = () => {
         );
     });
 
+    // Sorts the filtered products alphabetically by name
     const sortedFilteredProducts = [...filteredProducts].sort((a, b) =>
         a.name.localeCompare(b.name)
     );
 
+    // Handles the deletion of a product
     const handleDelete = async (productId) => {
-        const confirmed = window.confirm('Are you sure you want to delete this wine?');
+        const confirmed = window.confirm('Are you sure you want to delete this wine?'); // Confirms before deleting
         if (!confirmed) return;
 
         try {
@@ -38,13 +42,14 @@ const ProductPage = () => {
         });
         if (!response.ok) throw new Error('Failed to delete product');
         
-        // Remove the deleted wine from local state
+        // Updates the UI by removing the deleted wine from the state
         setProducts(prev => prev.filter(wine => wine.id !== productId));
     } catch (error) {
         console.error('Error deleting product:', error);
     }
-};
+    };
 
+    // Renders a loading or an error message based on state
     if (loading) return <p>Loading products...</p>;
     if (error) return <p>Error: {error}</p>;
 

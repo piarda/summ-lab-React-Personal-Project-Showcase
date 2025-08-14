@@ -1,4 +1,3 @@
-/* WineCard.module.css */
 .wineCard {
   background-color: #fff;
   border: 1px solid #ddd;
@@ -45,7 +44,7 @@
 }
 
 .deleteButton {
-  background-color: #7c0a02; /* softer red */
+  background-color: #7c0a02;
   color: white;
   border: none;
   padding: 10px 20px;
@@ -55,7 +54,7 @@
 }
 
 .deleteButton:hover {
-  background-color: #5a0701; /* darker red on hover */
+  background-color: #5a0701;
 }
 
 .buttonGroup {
@@ -71,5 +70,5 @@
   gap: 20px;
   padding: 0;
   margin: 0 auto;
-  max-width: 1000px; /* adjust as needed */
+  max-width: 1000px;
 }

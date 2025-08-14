@@ -6,8 +6,9 @@ import styles from './FormPage.module.css';
 const FormPage = () => {
   const { addProduct } = useProduct(); // Get the addProduct function from context
   const navigate = useNavigate();
-  const { id } = useParams();  // This will be undefined when adding new product
+  const { id } = useParams();
 
+  // State variables for form inputs and UI feedback
   const [productName, setProductName] = useState('');
   const [productPrice, setProductPrice] = useState('');
   const [type, setType] = useState('');
@@ -17,7 +18,7 @@ const FormPage = () => {
   const [success, setSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  // If editing (id is present), fetch existing product data to populate form
+  // useEffect to fetch existing product data if an ID is present in the URL
   useEffect(() => {
     if (id) {
       setLoading(true);
@@ -42,9 +43,11 @@ const FormPage = () => {
     }
   }, [id]);
 
+  // Handles form submission for both adding and editing
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // Creates a product data object from the form state
     const productData = {
       name: productName,
       price: Number(productPrice),
@@ -82,9 +85,8 @@ const FormPage = () => {
         addProduct(savedProduct);
       }
 
+      // Show a success message and then redirect
       setSuccess(true);
-
-      // Optional: redirect after 2 seconds or immediately
       setTimeout(() => {
         navigate('/product');
       }, 2000);
@@ -94,6 +96,7 @@ const FormPage = () => {
     }
   };
 
+  // Displays loading message while product data is being fetched
   if (loading) return <p>Loading product data...</p>;
 
   return (
@@ -148,4 +151,4 @@ const FormPage = () => {
   );
 };
 
-export default FormPage;
+export default FormPage

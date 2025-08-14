@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './LandingPage.module.css';
 
+// Main landing page to introduce application
 const LandingPage = () => {
     const navigate = useNavigate();
 

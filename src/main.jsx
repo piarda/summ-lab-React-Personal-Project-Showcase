@@ -2,12 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import './styles/index.css';
-import { ProductProvider } from './context/ProductContext'; // Import the provider
+import { BrowserRouter as Router } from 'react-router-dom'; // Import Router
+import { ProductProvider } from './context/ProductContext';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <ProductProvider> {/* Wrap the app with the provider */}
-      <App />
-    </ProductProvider>
+    <Router> {/* Add the Router here */}
+      <ProductProvider>
+        <App />
+      </ProductProvider>
+    </Router>
   </React.StrictMode>
 );

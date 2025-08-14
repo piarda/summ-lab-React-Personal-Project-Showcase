@@ -1,12 +1,38 @@
-# React + Vite
+# Sip Happens!
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a React-based wine catalog web application that allows administrators to:
+- Browse a list of wines
+- Search and filter wines
+- Add, edit and delete wine product entries
 
-Currently, two official plugins are available:
+## Features:
+- Client-side routing with React Router
+- Live search by name, type, region, or year of wine
+- Admin form to add/edit/delete wines
+- Custom hooks and context for product management
+- Unit and integration tests with Vitest and React Testing Library
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Setup Instructions:
+1. After cloning the repository from GitHub, be sure to install dependencies via:
+    npm install
+2. Start the mock server via:
+    npm install -g json-server
+    json-server --watch db.json --port 6001
+3. Run the development server via:
+    npm run dev
+4. Open you browser and enter http://localhost:5173
 
-## Expanding the ESLint configuration
+## Running Tests:
+This project uses Vitest and React Testing Library.
+Run test via:
+    npm run test
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Screenshots:
+![Wine Catalog App Screenshot 1](./assets/WineAppScreenshot1.png)
+![Wine Catalog App Screenshot 2](./assets/WineAppScreenshot2.png)
+![Wine Catalog App Screenshot 3](./assets/WineAppScreenshot3.png)
+![Wine Catalog App Screenshot 4](./assets/WineAppScreenshot4.png)
+
+-----------------
+
+Thank you and enjoy!
