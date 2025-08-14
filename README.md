@@ -28,10 +28,10 @@ Run test via:
     npm run test
 
 ## Screenshots:
-![Wine Catalog App Screenshot 1](./assets/WineAppScreenshot1.png)
-![Wine Catalog App Screenshot 2](./assets/WineAppScreenshot2.png)
-![Wine Catalog App Screenshot 3](./assets/WineAppScreenshot3.png)
-![Wine Catalog App Screenshot 4](./assets/WineAppScreenshot4.png)
+![Wine Catalog App Screenshot 1](./src/assets/WineAppScreenshot1.png)
+![Wine Catalog App Screenshot 2](./src/assets/WineAppScreenshot2.png)
+![Wine Catalog App Screenshot 3](./src/assets/WineAppScreenshot3.png)
+![Wine Catalog App Screenshot 4](./src/assets/WineAppScreenshot4.png)
 
 -----------------
 
