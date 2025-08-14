@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useProduct } from '../context/ProductContext';
 import { useNavigate, useParams } from 'react-router-dom';
+import styles from './FormPage.module.css';
 
 const FormPage = () => {
   const { addProduct } = useProduct(); // Get the addProduct function from context
@@ -96,7 +97,7 @@ const FormPage = () => {
   if (loading) return <p>Loading product data...</p>;
 
   return (
-    <div>
+    <div className={styles.formContainer}>
       <h2>{id ? 'Edit Wine' : 'Add a New Wine'}</h2>
       {success && <p style={{ color: 'green' }}>Wine {id ? 'updated' : 'added'} successfully!</p>}
       <form onSubmit={handleSubmit}>

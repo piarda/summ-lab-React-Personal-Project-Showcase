@@ -1,0 +1,44 @@
+/* FormPage.module.css */
+.formContainer {
+  max-width: 500px;
+  margin: 0 auto;
+  background: white;
+  padding: 24px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+input {
+  display: block;
+  width: 100%;
+  margin-bottom: 12px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-family: Tahoma;
+}
+
+textarea {
+  display: block;
+  width: 100%;
+  min-height: 120px; /* taller height */
+  margin-bottom: 12px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-family: Tahoma;
+  resize: vertical; /* let user resize vertically */
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #7c0a02;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #5a0701;
+}

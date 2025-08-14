@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import LandingPage from './pages/LandingPage';
 import ProductPage from './pages/ProductPage';
-import FormPage from './pages/FormPage.jsx';
+import FormPage from './pages/FormPage';
 import './styles/App.css';
 
 function App() {

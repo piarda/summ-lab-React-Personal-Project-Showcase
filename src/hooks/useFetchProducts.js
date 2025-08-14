@@ -23,7 +23,7 @@ const useFetchProducts = () => {
     fetchData();
   }, []); // Empty array means it runs once when the component mounts
 
-  return { products, loading, error };
+  return { products, setProducts, loading, error };
 };
 
 export default useFetchProducts;
