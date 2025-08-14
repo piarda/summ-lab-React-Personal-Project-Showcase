@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import LandingPage from './pages/LandingPage';
 import ProductPage from './pages/ProductPage';
 import FormPage from './pages/FormPage.jsx';
@@ -11,9 +11,9 @@ function App() {
       <div className="App">
         <nav>
           <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/product">Wines</a></li>
-            <li><a href="/add-product">Add Wine</a></li>
+            <li><Link to="/">Home</Link></li>
+            <li><Link to="/product">Browse Wines</Link></li>
+            <li><Link to="/add-product">Add Wine</Link></li>
           </ul>
         </nav>
         <Routes>
