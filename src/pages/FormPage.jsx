@@ -1,62 +1,150 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useProduct } from '../context/ProductContext';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const FormPage = () => {
   const { addProduct } = useProduct(); // Get the addProduct function from context
+  const navigate = useNavigate();
+  const { id } = useParams();  // This will be undefined when adding new product
+
   const [productName, setProductName] = useState('');
   const [productPrice, setProductPrice] = useState('');
   const [type, setType] = useState('');
   const [region, setRegion] = useState('');
   const [year, setYear] = useState('');
   const [description, setDescription] = useState('');
+  const [success, setSuccess] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  // If editing (id is present), fetch existing product data to populate form
+  useEffect(() => {
+    if (id) {
+      setLoading(true);
+      fetch(`http://localhost:6001/products/${id}`)
+        .then(res => {
+          if (!res.ok) throw new Error('Failed to fetch product');
+          return res.json();
+        })
+        .then(data => {
+          setProductName(data.name);
+          setProductPrice(data.price);
+          setType(data.type);
+          setRegion(data.region);
+          setYear(data.year);
+          setDescription(data.description);
+          setLoading(false);
+        })
+        .catch(err => {
+          console.error(err);
+          setLoading(false);
+        });
+    }
+  }, [id]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    const newProduct = {
+
+    const productData = {
       name: productName,
       price: Number(productPrice),
       type,
       region,
       year: Number(year),
-      description
+      description,
     };
 
-    // Send POST request to add new product
     try {
-      const response = await fetch('http://localhost:6001/products', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(newProduct),
-      });
+      let response;
 
-      if (!response.ok) throw new Error('Failed to add product');
-      
-      const addedProduct = await response.json();
-      addProduct(addedProduct); // Add product to global state
-      setProductName('');
-      setProductPrice('');
+      if (id) {
+        // EDIT mode: PATCH request
+        response = await fetch(`http://localhost:6001/products/${id}`, {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(productData),
+        });
+      } else {
+        // ADD mode: POST request
+        response = await fetch('http://localhost:6001/products', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(productData),
+        });
+      }
+
+      if (!response.ok) throw new Error('Failed to save product');
+
+      const savedProduct = await response.json();
+
+      if (!id) {
+        // Only add new product to global state when adding
+        addProduct(savedProduct);
+      }
+
+      setSuccess(true);
+
+      // Optional: redirect after 2 seconds or immediately
+      setTimeout(() => {
+        navigate('/product');
+      }, 2000);
+
     } catch (error) {
-      console.error('Error adding product:', error);
+      console.error('Error saving product:', error);
     }
   };
 
+  if (loading) return <p>Loading product data...</p>;
+
   return (
     <div>
-      <h2>Add a New Product</h2>
+      <h2>{id ? 'Edit Wine' : 'Add a New Wine'}</h2>
+      {success && <p style={{ color: 'green' }}>Wine {id ? 'updated' : 'added'} successfully!</p>}
       <form onSubmit={handleSubmit}>
-        <input type="text" placeholder="Name" value={productName} onChange={(e) => setProductName(e.target.value)} />
-        <input type="number" placeholder="Price" value={productPrice} onChange={(e) => setProductPrice(e.target.value)} />
-        <input type="text" placeholder="Type" value={type} onChange={(e) => setType(e.target.value)} />
-        <input type="text" placeholder="Region" value={region} onChange={(e) => setRegion(e.target.value)} />
-        <input type="number" placeholder="Year" value={year} onChange={(e) => setYear(e.target.value)} />
-        <textarea placeholder="Description" value={description} onChange={(e) => setDescription(e.target.value)} />
-        <button type="submit">Add Wine</button>
-</form>
+        <input
+          required
+          type="text"
+          placeholder="Name"
+          value={productName}
+          onChange={(e) => setProductName(e.target.value)}
+        />
+        <input
+          required
+          type="number"
+          placeholder="Price"
+          value={productPrice}
+          onChange={(e) => setProductPrice(e.target.value)}
+        />
+        <input
+          required
+          type="text"
+          placeholder="Type"
+          value={type}
+          onChange={(e) => setType(e.target.value)}
+        />
+        <input
+          required
+          type="text"
+          placeholder="Region"
+          value={region}
+          onChange={(e) => setRegion(e.target.value)}
+        />
+        <input
+          required
+          type="number"
+          placeholder="Year"
+          value={year}
+          onChange={(e) => setYear(e.target.value)}
+        />
+        <textarea
+          required
+          placeholder="Description"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+        />
+        <button type="submit">{id ? 'Save Changes' : 'Add Wine'}</button>
+      </form>
     </div>
   );
 };
 
-export default FormPage
+export default FormPage;
