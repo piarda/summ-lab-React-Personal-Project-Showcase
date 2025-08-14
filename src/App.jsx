@@ -13,13 +13,14 @@ function App() {
           <ul>
             <li><Link to="/">Home</Link></li>
             <li><Link to="/product">Browse Wines</Link></li>
-            <li><Link to="/add-product">Add Wine</Link></li>
+            <li><Link to="/add-product">Admin Portal</Link></li>
           </ul>
         </nav>
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/product" element={<ProductPage />} />
           <Route path="/add-product" element={<FormPage />} />
+          <Route path="/edit-product/:id" element={<FormPage />} />
         </Routes>
       </div>
     </Router>

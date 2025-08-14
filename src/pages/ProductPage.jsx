@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import useFetchProducts from '../hooks/useFetchProducts';
 import styles from './WineCard.module.css';
 import Search from '../components/Search';
 
 const ProductPage = () => {
+    const navigate = useNavigate();
     const { products, loading, error } = useFetchProducts();
     const [editing, setEditing] = useState(null);
     const [newPrice, setNewPrice] = useState('');
@@ -50,6 +52,22 @@ const ProductPage = () => {
         }
     };
 
+    const handleDelete = async (productId) => {
+        const confirmed = window.confirm('Are you sure you want to delete this wine?');
+        
+        if (!confirmed) return;
+        try {
+            const response = await fetch(`http://localhost:6001/products/${productId}`, {
+            method: 'DELETE',
+        });
+        if (!response.ok) throw new Error('Failed to delete product');
+        
+        window.location.reload(); // Simple reload for now
+        } catch (error) {
+        console.error('Error deleting product:', error);
+        }
+    };
+
     if (loading) return <p>Loading products...</p>;
     if (error) return <p>Error: {error}</p>;
 
@@ -69,6 +87,8 @@ const ProductPage = () => {
                         <p className={styles.wineDetails}><strong>Region:</strong> {wine.region}</p>
                         <p className={styles.wineDetails}><strong>Description:</strong> {wine.description}</p>
                         <p className={styles.price}><strong>Price:</strong> ${wine.price}</p>
+                        <button onClick={() => navigate(`/edit-product/${wine.id}`)}>Edit</button>
+                        <button onClick={() => handleDelete(wine.id)} style={{ marginLeft: '10px', color: 'red' }}>Delete</button>
                         </li>
                     ))}
                 </ul>

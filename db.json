@@ -1,7 +1,7 @@
 {
   "products": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Château Margaux",
       "price": 350,
       "type": "Red",
@@ -10,7 +10,7 @@
       "description": "A full-bodied red with rich aromas of dark berries and oak."
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Cloudy Bay Sauvignon Blanc",
       "price": 30,
       "type": "White",
@@ -19,13 +19,31 @@
       "description": "A crisp white wine with notes of citrus and tropical fruits."
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "Veuve Clicquot Brut",
       "price": 60,
       "type": "Sparkling",
       "region": "Champagne",
       "year": 2016,
       "description": "A vibrant sparkling wine with hints of apple and brioche."
+    },
+    {
+      "id": "3f4e",
+      "name": "Whispering Angel Rose",
+      "price": 26,
+      "type": "Rose",
+      "region": "Cotes de Provence",
+      "year": 2024,
+      "description": "This is a bouncy wine with notes of fresh red berries, stone fruit, soft white florals and a touch of tarragon. A great partner for shellfish, cream chicken pasta or veal."
+    },
+    {
+      "id": "7a46",
+      "name": "Matetic Corralillo Carmenere",
+      "price": 23,
+      "type": "Red",
+      "region": "Aconcagua",
+      "year": 2023,
+      "description": "An expressive red wine that offers vibrant aromas of red berries, blackberries and plums, accented by a hint of oaky spice."
     }
   ]
 }
