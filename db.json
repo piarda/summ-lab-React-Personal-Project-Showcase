@@ -1,0 +1,31 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Château Margaux",
+      "price": 350,
+      "type": "Red",
+      "region": "Bordeaux",
+      "year": 2015,
+      "description": "A full-bodied red with rich aromas of dark berries and oak."
+    },
+    {
+      "id": 2,
+      "name": "Cloudy Bay Sauvignon Blanc",
+      "price": 30,
+      "type": "White",
+      "region": "Marlborough",
+      "year": 2020,
+      "description": "A crisp white wine with notes of citrus and tropical fruits."
+    },
+    {
+      "id": 3,
+      "name": "Veuve Clicquot Brut",
+      "price": 60,
+      "type": "Sparkling",
+      "region": "Champagne",
+      "year": 2016,
+      "description": "A vibrant sparkling wine with hints of apple and brioche."
+    }
+  ]
+}
